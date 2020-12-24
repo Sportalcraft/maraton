@@ -1,4 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';  
+import { Socket } from 'socket.io-client';
+//import { ChatService } from './service/chat.service';
   
 @Component({  
   selector: 'app-custom-text',  
@@ -7,17 +9,23 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 })  
 export class CustomTextComponent implements OnInit {  
   
-  constructor() { }  
-  
   @Input() inputModel: string = "";  
   @Input() maxLength: number = 0;  
-  @Input() isNumeric: boolean = false;  
+  @Input() isNumeric: boolean = false;   
+
+  @Input() msg: String = "";  
+  @Input() snd: ()=>any = ():any=>{};  
   
   @Output() inputModelChange = new EventEmitter<string>();  
   
   totalCharLengthText: string = "";  
   
-  textCount: number = 0;  
+  textCount: number = 0; 
+  
+  constructor() {
+  }
+
+
     
   ngOnInit() {  
     this.textCount = this.inputModel.length;  
@@ -25,8 +33,10 @@ export class CustomTextComponent implements OnInit {
   }  
   
   textChange(){  
+    this.snd();
+
     this.inputModelChange.emit(this.inputModel);  
-    this.textCount = this.inputModel.length;  
+    this.textCount = this.inputModel.length; 
   }  
   
   numberOnly(event:any): boolean {  
