@@ -12,9 +12,6 @@ export class CustomTextComponent implements OnInit {
   @Input() inputModel: string = "";  
   @Input() maxLength: number = 0;  
   @Input() isNumeric: boolean = false;   
-
-  @Input() msg: String = "";  
-  @Input() snd: ()=>any = ():any=>{};  
   
   @Output() inputModelChange = new EventEmitter<string>();  
   
@@ -33,8 +30,6 @@ export class CustomTextComponent implements OnInit {
   }  
   
   textChange(){  
-    this.snd();
-
     this.inputModelChange.emit(this.inputModel);  
     this.textCount = this.inputModel.length; 
   }  

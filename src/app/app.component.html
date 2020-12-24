@@ -3,11 +3,11 @@
     Create custom Textbox in Angular 8 with Input & Output Decorators  
   </h2>  
   <div>  
-    <app-custom-text [(inputModel)]="data1" [maxLength]="0"></app-custom-text>  
+    <app-custom-text  tabindex="-1"   (focusin)="send('box 1 was touched')"  (focusout)="send('box 1 no longer in touch')" [(inputModel)]="data1" [maxLength]="0"></app-custom-text>  
   </div>  
   <br />  
   <div>  
-    <app-custom-text  [(inputModel)]="data2" [maxLength]="10" [isNumeric]="true" ></app-custom-text>  
+    <app-custom-text  tabindex="-1"  (focusin)="send('box 2 was touched')"  (focusout)="send('box 2 no longer in touch')" [(inputModel)]="data2" [maxLength]="10" [isNumeric]="true" ></app-custom-text>  
   </div>
   
   
@@ -15,7 +15,4 @@
   <button (click)="sendMessage()">Send</button>
   <br />  
   <br />  
-  <input (focus)="send('box 1 was touched')" (focusout)="send('box 1 no longer in touch')" />
-  <br />  
-  <input (focus)="send('box 2 was touched')" (focusout)="send('box 2 no longer in touch')" />
 </div>  
